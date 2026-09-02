@@ -57,6 +57,7 @@ export default function PresetButtons({
                   : "shadow-[0_1px_2px_rgba(15,23,42,0.04)]",
                 isPending ? "cursor-wait" : "cursor-pointer",
               ].join(" ")}
+              aria-pressed={isSelected}
               disabled={isPending}
               onClick={() => onSelect(preset.id)}
               type="button"

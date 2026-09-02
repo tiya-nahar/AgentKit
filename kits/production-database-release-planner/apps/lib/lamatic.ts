@@ -370,10 +370,23 @@ function parseMigrationResult(rawResult: unknown): MigrationPipelineResult {
     throw new Error("Lamatic returned an unexpected response shape.");
   }
 
+  const operations = coerceStringArray(result.operations, "operations");
+  const targetTable = coerceStringArray(result.target_table, "target_table");
+  const targetColumns = coerceNestedStringArrays(result.target_columns, "target_columns");
+
+  if (
+    operations.length !== targetTable.length ||
+    operations.length !== targetColumns.length
+  ) {
+    throw new Error(
+      `Lamatic response has misaligned operations (${operations.length}), target_table (${targetTable.length}), and target_columns (${targetColumns.length}) arrays.`,
+    );
+  }
+
   return {
-    operations: coerceStringArray(result.operations, "operations"),
-    target_table: coerceStringArray(result.target_table, "target_table"),
-    target_columns: coerceNestedStringArrays(result.target_columns, "target_columns"),
+    operations,
+    target_table: targetTable,
+    target_columns: targetColumns,
     is_destructive: coerceBoolean(result.is_destructive, "is_destructive"),
     data_loss_potential: coerceEnum(result.data_loss_potential, riskLevels, "data_loss_potential"),
     explanation: coerceString(result.explanation, "explanation"),

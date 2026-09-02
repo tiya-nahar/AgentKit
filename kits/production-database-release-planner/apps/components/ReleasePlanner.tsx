@@ -162,6 +162,10 @@ export default function ReleasePlanner({
       setRunState("COMPLETED");
       setValidationMessage(null);
     } catch (error) {
+      if (executionIdRef.current !== currentExecutionId) {
+        return;
+      }
+
       clearPendingExecution();
 
       setPipelineNodes((currentNodes) =>

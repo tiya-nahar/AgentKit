@@ -41,7 +41,7 @@
       ]
     },
     "target_columns": {
-      "oneOf": [
+      "anyOf": [
         {
           "type": "array",
           "items": {
@@ -115,7 +115,8 @@
           "enum": [
             "LOW",
             "MEDIUM",
-            "HIGH"
+            "HIGH",
+            "UNKNOWN"
           ]
         },
         "production_risk": {
@@ -123,7 +124,8 @@
           "enum": [
             "LOW",
             "MEDIUM",
-            "HIGH"
+            "HIGH",
+            "UNKNOWN"
           ]
         },
         "reasoning": {

@@ -48,7 +48,7 @@
 
     "target_columns": {
       "description": "Columns directly affected by each operation.",
-      "oneOf": [
+      "anyOf": [
         {
           "type": "array",
           "items": {

@@ -77,6 +77,34 @@ production-database-release-planner/
 └── README.md
 ```
 
+## Setup
+
+### Prerequisites
+
+- Node.js 18+ and npm.
+- A Lamatic project with the `release-safety-pipeline` flow deployed (see [`agent.md`](agent.md) for the expected flow contract).
+
+### Steps
+
+1. From the repository root, move into the app directory:
+   ```bash
+   cd kits/production-database-release-planner/apps
+   ```
+2. Copy the environment template and fill in your Lamatic project values:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Set `LAMATIC_API_URL`, `LAMATIC_PROJECT_ID`, `LAMATIC_API_KEY`, and `LAMATIC_FLOW_ID` in `.env.local` (see `.env.example` for details on each variable).
+3. Install dependencies:
+   ```bash
+   npm ci
+   ```
+4. Run the app in development mode:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000), paste or select a preset SQL migration, and run the pipeline.
+
 ## Example Workflow
 
 1. Provide an SQL migration input file in examples/input/.
